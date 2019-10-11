@@ -2,7 +2,7 @@
 
 import argparse
 
-price = [1050, 270, 1540, 3800, 2]
+price = [100, 90, 80, 50, 20, 10]
 
 
 def find_max_profit(prices):
@@ -11,22 +11,21 @@ def find_max_profit(prices):
     # Max profit is the difference between the smallest and largest prices left of the max
     current_min_price_so_far = prices[0]  # Price at first index
     # max_price = 0
+    # Price of the second index minus the current min. Initial instance will be between 0 and 1
     max_profit = prices[1] - current_min_price_so_far
 
     for i in range(1, len(prices)):
-        # print(prices[i])
+        print(f"Price is {prices[i]}")
+        print(f"Current min price is {current_min_price_so_far}")
         # Comapre price at i index with current min price
+        # Max profit is the difference between a price and the current smallest price
+        # If the difference is greater than the current max profit then the difference replaces the max profit
+        if prices[i] - current_min_price_so_far > max_profit:
+            max_profit = prices[i] - current_min_price_so_far
         # If price[i] is less than current price then it becomes  current min price
         if prices[i] < current_min_price_so_far:
             current_min_price_so_far = prices[i]
-            print(f"Current min price is {current_min_price_so_far}")
-        if prices[i] - current_min_price_so_far > max_profit:
-            max_profit = prices[i] - current_min_price_so_far
-            # max_profit = max_profit
-            print(f"Max profit is {max_profit}")
-
-    # print(f"Current min price is {current_min_price_so_far}")
-
+    # Return the max profit
     return max_profit
 
 
